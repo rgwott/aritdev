@@ -31,7 +31,7 @@ The module awaits for write operations that describe arithmetic operations. Mess
 
 Bytes 1 through 8 contain the first 64-bit operand and bytes 9 through 16 contain the second 64-bit operand. The operands are little endian in the x86-64 architecture.
 
-Upon reception of a write operation, the module confirms reception of the 17 bytes if the message is well-formed or with -EINVAL is it is malformed (e.g. invalid length or invalid operation). The result is then computed.
+Upon reception of a write operation, the module returns the amount of bytes received (17) if the message is well-formed or -EINVAL if it is malformed (e.g. invalid length or invalid operation). The result is then computed.
 
 Is a result is available (meaning that there has been a write describing a valid operation and the result has not yet been read), it can be obtained through a read operation.
 
