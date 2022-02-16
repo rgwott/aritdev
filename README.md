@@ -5,6 +5,7 @@ Kernel module for providing basic arithmetic operations, and associated userspac
 - Linux environment (tested with kernel 5.15.13)
 - GCC (tested with 11.2.0)
 - Make (tested with 4.3)
+- Python (tested with 3.10.0)
 
 ### Building
 To build all aplications, simply run
@@ -57,3 +58,20 @@ A request message must be composed identically to the operations expected by the
 Before forwarding the request to aritdev, the server performs validations and responds to the client with a status code. A valid message returns a zero, a message with invalid length returns a 1 and a message with and invalid operation returns a 2.
 
 If the request is valid, it is written to aritdev and the result is read. The server then responds with the 64-bit result to the client, closes the connection, and awaits for a new connection.
+
+### Client applications
+Two client applications are provided, one in C and one in Python.
+They are identical in functionality.
+The C client is executed from the root of the repo with:
+
+`$ client/client`
+
+while the Python client is executed with:
+
+`$ python python_client/python_client.py`
+
+Both clients present four arithmetic operations for the user to choose from.
+The user inputs the chosen application then inputs the two signed integer operands.
+
+The clients perform validations then assemble a request which is sent to the server on port 8080.
+The status code response from the server is then retrieved and, in case of success, so is the result of the arithmetic operation.
