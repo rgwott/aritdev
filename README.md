@@ -56,7 +56,7 @@ A request message must be composed identically to the operations expected by the
 
 Before forwarding the request to aritdev, the server performs validations and responds to the client with a status code. A valid message returns a zero, a message with invalid length returns a 1 and a message with and invalid operation returns a 2.
 
-If the request is valid, it is written to aritdev and the result is read. The server then responds with the 64-bit result to the client, closes the connection, and awaits for a new connection.
+If the request is valid, it is written to aritdev and the result is read. The server then responds with the 64-bit result to the client, closes the connection, and waits for a new connection.
 
 ### Client applications
 Two client applications are provided, one in C and one in Python.
