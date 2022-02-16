@@ -4,22 +4,21 @@ Kernel module for providing basic arithmetic operations, and associated userspac
 ### Dependencies
 - Linux environment (tested with kernel 5.15.13)
 - GCC (tested with 11.2.0)
+- CMake (tested with 3.22.1)
 - Make (tested with 4.3)
 - Python (tested with 3.10.0)
 
 ### Building
-To build all aplications, simply run
-`make`
+To build all aplications, run
+`cmake -Bbuild; cd build; make; cd ..`
 at the root of the repo.
 
-To clean all aplications, run
-`make clean`
-at the root of the repo.
+To clean all aplications, simply remove directory `build/` and its contents.
 
 ### Kernel module
 Load the module from the root of the repo with:
 
-`# insmod module/aritdev.ko`
+`# insmod build/module/aritdev.ko`
 
 This creates character device /dev/aritdev, with which applications can interact to request basic arithmetic operations. The module logs messages on the kernel log (dmesg).
 
@@ -50,7 +49,7 @@ to reload udev rules.
 ### Server application
 Run the server application from the root of the repo with:
 
-`$ server/server`
+`$ build/server/server`
 
 The server listens to requests from client applications on port 8080.
 A request message must be composed identically to the operations expected by the aritdev device (one operation byte and two 64-bit operands).
@@ -64,7 +63,7 @@ Two client applications are provided, one in C and one in Python.
 They are identical in functionality.
 The C client is executed from the root of the repo with:
 
-`$ client/client`
+`$ build/client/client`
 
 while the Python client is executed with:
 
