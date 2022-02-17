@@ -63,8 +63,8 @@ except ValueError:
 
 # Assemble request
 request = bytes(operation, 'utf-8') + \
-          operand1.to_bytes(OPERAND_LEN, 'little') + \
-          operand2.to_bytes(OPERAND_LEN, 'little')
+          operand1.to_bytes(OPERAND_LEN, 'little', signed=True) + \
+          operand2.to_bytes(OPERAND_LEN, 'little', signed=True)
 
 # Open socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
